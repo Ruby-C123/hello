@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eff4e5">
+<meta name="description" content="和小松鼠一起玩果園接接樂！左右移動接蘋果，避開帶刺栗子，三顆愛心用完遊戲結束。">
+<title>小松鼠的果園接接樂</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<symbol id="apple" viewBox="0 0 80 80"><path d="M40 24Q35 13 42 7" fill="none" stroke="#755541" stroke-width="5" stroke-linecap="round"/><path d="M43 20Q45 5 64 11Q60 26 43 20Z" fill="#719750"/><path d="M40 29C17 12 5 31 12 52C18 72 29 77 40 70C52 78 65 66 69 49C75 28 60 17 40 29Z" fill="#eb786a"/><path d="M20 38Q18 45 23 53" stroke="#ffbb9d" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="31" cy="48" r="2.5" fill="#663f35"/><circle cx="51" cy="48" r="2.5" fill="#663f35"/><path d="M36 56Q41 61 46 56" fill="none" stroke="#663f35" stroke-width="2.4" stroke-linecap="round"/></symbol>
+<symbol id="chestnut" viewBox="0 0 80 80"><path d="M40 4L47 17L60 9L59 23L74 22L65 36L78 43L64 49L70 64L55 61L53 77L40 66L28 77L25 62L9 68L15 51L2 43L16 35L8 22L24 24L25 9L35 19Z" fill="#869551"/><circle cx="40" cy="42" r="23" fill="#a9b66b"/><path d="M40 21Q60 33 56 52Q40 65 23 51Q20 34 40 21Z" fill="#976044"/><path d="M23 49Q40 58 57 49L55 56Q40 65 25 56Z" fill="#d5a676"/></symbol>
+<symbol id="squirrel" viewBox="0 0 100 100"><path d="M45 74C4 94 1 46 20 32C36 20 42 41 31 46C18 51 29 66 42 56Z" fill="#bb7951"/><path d="M31 54C23 46 21 39 27 37" fill="none" stroke="#dfa67a" stroke-width="6" stroke-linecap="round"/><ellipse cx="58" cy="66" rx="21" ry="24" fill="#ca8a59"/><ellipse cx="61" cy="72" rx="13" ry="17" fill="#f2d0a0"/><path d="M44 33L42 11Q58 10 60 30M63 29L73 12Q87 21 77 36" fill="#ca8a59"/><path d="M47 25L46 17L53 23M72 28L76 20L78 28" fill="#eeb994"/><ellipse cx="62" cy="42" rx="24" ry="20" fill="#d59a65"/><ellipse cx="74" cy="48" rx="16" ry="11" fill="#f3d7ae"/><circle cx="67" cy="37" r="3.7" fill="#4f4032"/><circle cx="68" cy="36" r="1.2" fill="white"/><circle cx="88" cy="45" r="3" fill="#624a36"/><path d="M77 54Q82 55 85 51" fill="none" stroke="#80563c" stroke-width="1.7" stroke-linecap="round"/><ellipse cx="74" cy="69" rx="12" ry="5" fill="#ca8a59" transform="rotate(-20 74 69)"/><ellipse cx="51" cy="91" rx="12" ry="5" fill="#a56c47"/><ellipse cx="73" cy="90" rx="11" ry="5" fill="#a56c47"/></symbol>
+</defs></svg>
+<main class="wrap">
+<header class="header"><div><div class="eyebrow">A LITTLE DAY IN THE ORCHARD</div><div class="title"><svg aria-hidden="true"><use href="#apple"/></svg><h1>小松鼠的果園接接樂</h1></div><p class="subtitle">把甜甜蘋果裝進籃子，和小松鼠一起收集好心情。</p></div><div class="season">✿ 今天也適合來果園玩</div></header>
+<div class="layout">
+<section class="game" aria-label="果園接接樂遊戲">
+<div class="toolbar"><div class="stats"><div class="score-box"><span class="stat-label">收集分數</span><strong class="score-number" id="score">0</strong></div><div class="heart-box"><div class="stat-label">剩餘愛心</div><div id="hearts" class="hearts" aria-label="剩餘 3 顆心"><span class="heart" aria-hidden="true">♥</span><span class="heart" aria-hidden="true">♥</span><span class="heart" aria-hidden="true">♥</span></div></div></div><div class="actions"><button id="start" class="small-button primary">開始遊戲</button><button id="restart" class="small-button">↻ 重新開始</button></div></div>
+<div class="stage" id="stage"><canvas id="canvas" aria-label="用左右方向鍵、A、D、滑鼠或觸控移動角色，接住蘋果並避開栗子。"></canvas>
+<div class="overlay" id="overlay"><div class="overlay-card"><svg class="overlay-icon" id="overlay-icon" aria-hidden="true"><use href="#apple"/></svg><div class="overlay-badge" id="overlay-badge">小松鼠的午後邀請</div><h2 id="overlay-title">今天，一起接蘋果！</h2><p id="overlay-copy">籃子準備好了嗎？<br>接住蘋果，記得閃開刺刺栗子。</p><button class="play-button" id="play">開始收集 →</button><p class="overlay-tip" id="overlay-tip">三顆愛心・一籃子的好心情</p></div></div></div>
+<div class="game-bottom"><div class="movement" aria-label="移動控制"><button class="move-button" id="left" aria-label="向左移動">←</button><button class="move-button" id="right" aria-label="向右移動">→</button></div><span class="status" id="status">← → 移動，也可以滑鼠或拖曳</span><button class="small-button quiet" id="sound" aria-label="開啟音效" title="開啟音效" aria-pressed="false">♫</button></div>
+</section>
+<aside class="guide"><section class="guide-card"><h2>果園小規則</h2><div class="rule"><span class="rule-icon"><svg aria-hidden="true"><use href="#apple"/></svg></span><div><strong>接住蘋果 <span class="plus">＋1 分</span></strong><p>每一顆，都是甜甜的收穫。</p></div></div><div class="rule"><span class="rule-icon"><svg aria-hidden="true"><use href="#chestnut"/></svg></span><div><strong>碰到栗子 <span class="minus">−1 ♥</span></strong><p>刺刺的，讓它掉到地上吧！</p></div></div><div class="rule"><span class="rule-icon" style="color:#ed786d;font-size:25px">♡</span><div><strong>漏接蘋果 <span class="minus">−1 ♥</span></strong><p>只有三顆心，要好好珍惜喔。</p></div></div></section><section class="guide-card controls"><h2>籃子跟著你走</h2><div class="keyboard"><span class="key">←</span><span class="key">→</span><span class="key">A</span><span class="key">D</span></div><p class="guide-note">按住按鍵左右移動，或在果園裡移動滑鼠。<br>手機可以拖曳角色，或按住下方的方向按鈕。</p></section><div class="squirrel-note"><svg aria-hidden="true"><use href="#squirrel"/></svg><p>「偶爾會拿錯栗子……<br><strong>你要小心接喔！</strong>」</p></div></aside>
+</div><footer class="footer"><span class="leaf">✿ 慢慢玩，收集一點小快樂。</span><span>APPLE DAYS · 森林裡的好時光</span></footer>
+<div class="sr-only" id="announcer" aria-live="polite" aria-atomic="true"></div>
+</main>
+<script defer src="js/game.js"></script>
+</body>
+</html>
